@@ -1,0 +1,102 @@
+# Require location at ~/.config/starship.toml
+# Require "eval "$(starship init bash)"" in .bashrc
+# Require usage one of Nerd fonts https://www.nerdfonts.com/ with support of icons
+
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+# Prompt format
+format = """
+$directory $git_branch $git_status $fill $cmd_duration at $time | $battery
+$character
+"""
+
+# [username]
+# show_always = true
+# style_user = "fg:#2883ff"
+# style_root = "fg:#2883ff"
+# format = '[$user@]($style)'
+
+# [hostname]
+# ssh_only = false
+# style = "fg:#2883ff"
+# format = "[$hostname]($style)"
+
+[directory]
+style = "fg:#0fdbbd"
+format = "[$path]($style)"
+truncation_length = 5
+truncation_symbol = "…/"
+truncate_to_repo = false
+use_os_path_sep = false
+
+# Here is how you can shorten some long paths by text replacement
+# similar to mapped_locations in Oh My Posh:
+[directory.substitutions]
+"Documents" = " "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
+# Keep in mind that the order matters. For example:
+# "Important Documents" = "  "
+# will not be replaced, because "Documents" was already substituted before.
+# So either put "Important Documents" before "Documents" or use the substituted version:
+# "Important  " = "  "
+
+[git_branch]
+symbol = ""
+style = "fg:#eb0f9d"
+format = "on [$symbol $branch]($style)"
+
+[git_status]
+style = "fg:#eb0f9d"
+format = "[($all_status$ahead_behind)]($style)"
+
+# [nodejs]
+# symbol = ""
+# style = "fg:#dbf3ff"
+# format = '[via $symbol]($style)'
+
+# [rust]
+# symbol = ""
+# style = "fg:#dbf3ff"
+# format = '[via $symbol]($style)'
+
+
+# Fill for right align
+[fill]
+symbol = " "
+
+# Duration of lst command
+[cmd_duration]
+min_time = 10
+show_milliseconds = true
+style = "fg:#e6e6e6"
+format = " [$duration]($style)"
+
+# Battery
+[battery]
+full_symbol = ""
+charging_symbol = ""
+discharging_symbol = ""
+empty_symbol = ""
+format = "[$symbol $percentage]($style)"
+
+[[battery.display]]
+threshold = 100
+style = "fg:#e6e6e6"
+
+# Time
+[time]
+disabled = false
+time_format = "%X"
+style = "fg:#e6e6e6"
+format = "[$time]($style)"
+
+# Default prompt character
+[character]
+success_symbol = "[❯](fg:#e9eb0c)"
+error_symbol = "[❯](fg:#e9eb0c)"
