@@ -10,7 +10,7 @@ add_newline = true
 
 # Prompt format
 format = """
-$directory $git_branch $git_status $fill $cmd_duration at $time | $battery
+$directory $git_branch $git_status $fill $nodejs$cmd_duration at $time | $battery
 $character
 """
 
@@ -54,17 +54,19 @@ format = "on [$symbol $branch]($style)"
 [git_status]
 style = "fg:#eb0f9d"
 format = "[($all_status$ahead_behind)]($style)"
+ahead = '⇡${count}'
+diverged = '⇕⇡${ahead_count}⇣${behind_count}'
+behind = '⇣${count}'
 
-# [nodejs]
-# symbol = ""
-# style = "fg:#dbf3ff"
-# format = '[via $symbol]($style)'
+[nodejs]
+symbol = ""
+style = "fg:#e6e6e6"
+format = '[$symbol $version |]($style)'
 
 # [rust]
 # symbol = ""
 # style = "fg:#dbf3ff"
 # format = '[via $symbol]($style)'
-
 
 # Fill for right align
 [fill]
@@ -92,7 +94,7 @@ style = "fg:#e6e6e6"
 # Time
 [time]
 disabled = false
-time_format = "%X"
+time_format = "%I:%M %p"
 style = "fg:#e6e6e6"
 format = "[$time]($style)"
 
